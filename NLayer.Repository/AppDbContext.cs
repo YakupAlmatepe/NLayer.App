@@ -11,10 +11,10 @@ namespace NLayer.Repository
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
-        {
+        //public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
+        //{
                 
-        }
+        //}
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductFeature> ProductFeatures  { get; set; }
@@ -22,7 +22,7 @@ namespace NLayer.Repository
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Server=localhost; initial catalog=DbNlayerApı;Login=sa;Password=Ykp14538-;"); 
+            optionsBuilder.UseSqlServer("Server=DESKTOP-QO8PCJ5;initial catalog =DbNLayer; integrated security=true;");
 
             //optionsBuilder.UseSqlServer(connectionString);
             //base.OnConfiguring(optionsBuilder);
