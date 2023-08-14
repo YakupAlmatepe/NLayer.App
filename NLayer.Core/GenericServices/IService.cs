@@ -9,14 +9,23 @@ namespace NLayer.Core.GenericServices
 {
     public interface IService<T> where T : class
     {
+        
         Task<T> GetByIdAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> expression);//IQUERYABLE İLE DİREKT DATABASEYE GİRMEDEN SORGULARI YAPABİLECEĞİMİZ FONKSİYON
+
+        Task<IEnumerable<T>> GetAllAsync();//IQUERYABLE İLE DİREKT DATABASEYE GİRMEDEN SORGULARI YAPABİLECEĞİMİZ FONKSİYON
+       
         IQueryable<T> Where(Expression<Func<T, bool>> expression);//DB 
+       
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
-        Task AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
+       
+        Task<T> AddAsync(T entity);
+       
+        Task <IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
+        
         Task UpdateAsync(T entity);
+       
         Task RemoveAsync(T entity);
+       
         Task RemoveRangeAsync(IEnumerable<T> entities);
     }
 }
