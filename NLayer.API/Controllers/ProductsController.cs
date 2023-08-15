@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.GenericServices;
 using NLayer.Core.Models;
@@ -37,6 +38,8 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomeResponseDto<List<ProductDto>>.Sucess(200,productDtos));
 
         }
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
