@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using NLayer.Core.DTOs;
 using NLayer.Core.GenericServices;
 using NLayer.Core.Models;
+using NLayer.Core.Services;
+using NLayer.Service.Services;
 
 namespace NLayer.API.Controllers
 {
@@ -12,13 +14,19 @@ namespace NLayer.API.Controllers
     public class ProductsController : CustomeBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
-
-        public ProductsController(IMapper mapper, IService<Product> service)
+      
+        private readonly IProductService _service;
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
-            _service = service;
+            _service = productService;
         }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductWithCategory()
+        {
+            return CreateActionResult(await _service.GetProductsWithCategory());
+        }
+
         [HttpGet]
         public async Task<IActionResult> All()
         {
@@ -35,6 +43,7 @@ namespace NLayer.API.Controllers
             var products = await _service.GetByIdAsync(id);
             //  var products = await _service.GetAllAsync();
             var productDtos = _mapper.Map<List<ProductDto>>(products);
+            
          
             return CreateActionResult(CustomeResponseDto<List<ProductDto>>.Sucess(200, productDtos));
 
