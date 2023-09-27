@@ -12,7 +12,7 @@ namespace NLayer.Service.Mapping
     public class MapProfile :Profile
     {
         public MapProfile()
-        {
+        {//dtoları entylere-entityleri dtolara cevirr
             CreateMap<Product,ProductDto>().ReverseMap();
             CreateMap<Category,CategoryDto>().ReverseMap();
             CreateMap<ProductFeature,ProductFeatureDto>().ReverseMap();

@@ -10,8 +10,10 @@ namespace NLayer.Core.DTOs
     public class CustomeResponseDto<T>
     {
         public T Data { get; set; }
-        [JsonIgnore]
+        
         public List<string> Errors { get; set; }
+
+        [JsonIgnore]
         public int StatusCode { get; set; }
 
         public static CustomeResponseDto<T> Sucess(int statusCode, T data)
