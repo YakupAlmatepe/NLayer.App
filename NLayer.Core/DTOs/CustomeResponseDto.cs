@@ -16,11 +16,11 @@ namespace NLayer.Core.DTOs
         [JsonIgnore]
         public int StatusCode { get; set; }
 
-        public static CustomeResponseDto<T> Sucess(int statusCode, T data)
+        public static CustomeResponseDto<T> Success(int statusCode, T data)
         {
             return new CustomeResponseDto<T> { StatusCode = statusCode, Data = data };
         }
-        public static CustomeResponseDto<T> Sucess(int statusCode)
+        public static CustomeResponseDto<T> Success(int statusCode)
         {
             return new CustomeResponseDto<T> { StatusCode = statusCode};
         }

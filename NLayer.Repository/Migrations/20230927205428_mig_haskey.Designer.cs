@@ -12,8 +12,8 @@ using NLayer.Repository;
 namespace NLayer.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230814195740_mig")]
-    partial class mig
+    [Migration("20230927205428_mig_haskey")]
+    partial class mig_haskey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,14 +37,35 @@ namespace NLayer.Repository.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreareDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Kalemler"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreareDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Kitaplar"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreareDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Defterler"
+                        });
                 });
 
             modelBuilder.Entity("NLayer.Core.Models.Product", b =>
@@ -63,7 +84,8 @@ namespace NLayer.Repository.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -71,14 +93,61 @@ namespace NLayer.Repository.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreareDate = new DateTime(2023, 9, 27, 23, 54, 27, 719, DateTimeKind.Local).AddTicks(1778),
+                            Name = "Kalem1",
+                            Price = 200m,
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            CreareDate = new DateTime(2023, 9, 27, 23, 54, 27, 719, DateTimeKind.Local).AddTicks(1794),
+                            Name = "Kalem2",
+                            Price = 100m,
+                            Stock = 150
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            CreareDate = new DateTime(2023, 9, 27, 23, 54, 27, 719, DateTimeKind.Local).AddTicks(1797),
+                            Name = "Kalem3",
+                            Price = 239500m,
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            CreareDate = new DateTime(2023, 9, 27, 23, 54, 27, 719, DateTimeKind.Local).AddTicks(1799),
+                            Name = "Kitaplar1",
+                            Price = 200m,
+                            Stock = 50
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            CreareDate = new DateTime(2023, 9, 27, 23, 54, 27, 719, DateTimeKind.Local).AddTicks(1800),
+                            Name = "Kalem1",
+                            Price = 450m,
+                            Stock = 59
+                        });
                 });
 
             modelBuilder.Entity("NLayer.Core.Models.ProductFeature", b =>
@@ -108,6 +177,24 @@ namespace NLayer.Repository.Migrations
                         .IsUnique();
 
                     b.ToTable("ProductFeatures");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = "Kızmızı",
+                            Height = 200,
+                            ProductId = 1,
+                            Width = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = "Yeşil",
+                            Height = 300,
+                            ProductId = 2,
+                            Width = 0
+                        });
                 });
 
             modelBuilder.Entity("NLayer.Core.Models.Product", b =>

@@ -5,10 +5,11 @@ using System.Text.Json;
 
 namespace NLayer.API.Middlewares
 {
+    //exception fırlatmak için clas ve metotlarımız Static olmalı
     public static class UseCustomExceptionHandler
     {
         public static void UseCustomException(this IApplicationBuilder app)//ıapplicationbuilder için yazacağımız exception 
-        {
+        {//kendi exceptionumuzu kullanmak için yaptığımız işlem
             app.UseExceptionHandler(config =>
             {
                 //Run ile amaç sonlandırmak daha ileriye gitmeden sonlanmak 

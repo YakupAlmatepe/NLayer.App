@@ -1,9 +1,17 @@
+using FluentValidation.AspNetCore;
+using NLayer.API.Filters;
+using NLayer.Service.Validation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
+//
+//builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -32,7 +32,7 @@ namespace ClaNLayer.Caching
             _repository = repository;
             _unitOfWork = unitOfWork;
 
-            ///sadece cace ait veri var mı yok mu
+            ///sadece cacehe ait veri var mı yok mu
             if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
                 _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
@@ -52,8 +52,7 @@ namespace ClaNLayer.Caching
         public Task<IEnumerable<Product>> GetAllAsync()
         {
 
-            var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
-            return Task.FromResult(products);
+            return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
         }
 
         public Task<Product> GetByIdAsync(int id)
@@ -74,7 +73,7 @@ namespace ClaNLayer.Caching
 
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return Task.FromResult(CustomeResponseDto<List<ProductWithCategoryDto>>.Sucess(200, productsWithCategoryDto));
+            return Task.FromResult(CustomeResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
         }
 
         public async Task RemoveAsync(Product entity)
@@ -113,6 +112,8 @@ namespace ClaNLayer.Caching
         public Task<bool> AnyAsync(Expression<Func<Product, bool>> expression)
         {
             throw new NotImplementedException();
+            
+                
         }
 
         public Task<Product> AddAsync(Product entity)

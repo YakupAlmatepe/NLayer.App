@@ -17,7 +17,7 @@ namespace NLayer.Repository.Repositories
 
         public async  Task<Category> GetSingleCategoryByIdWwithProductsAsync(int categoryId)
         {
-            return await _context.Categories.Include(x=>x.Products).Where(x=>x.Id == categoryId).SingleOrDefaultAsync();//singleordefout geriye hata döndürtür aynı anda birden fazla benzer ıd olamaz
+            return await _context.Categories.Include(x=>x.Products).Where(x=>x.Id == categoryId).SingleOrDefaultAsync();//singleordefout geriye hata döndürtür aynı anda birden fazla benzer ıd olamaz, geriye bir exception döner
             
         }
     }

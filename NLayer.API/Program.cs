@@ -9,6 +9,7 @@ using NLayer.API.Modules;
 using NLayer.Core.GenericServices;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
+using NLayer.Core.Sevice;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Repository;
 using NLayer.Repository.Repositories;
@@ -24,7 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
-
+//kendi filtrelemememizi kullanmak istedik programýn filtrelemesini pasif hale getirdik
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
@@ -38,15 +39,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
 //
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>),typeof(Service<>));
 //
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
+
+
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -56,7 +54,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
-///modulü ekledik
+///modulü ekledik authofac
 builder.Host.UseServiceProviderFactory
     (new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));

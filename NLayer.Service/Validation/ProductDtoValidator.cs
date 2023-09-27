@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NLayer.Service.Validation
-{
+{//<product diyerek > productsa ait validasyon kurallarını  uygulamak istiyoruz
     public class ProductDtoValidator : AbstractValidator<ProductDto>
     {
         public ProductDtoValidator()

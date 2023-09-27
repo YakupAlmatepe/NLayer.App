@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLayer.Service.Exceptions
 {
+    //client taraflı hatalar
     public class ClientSideException : Exception
     {
 
