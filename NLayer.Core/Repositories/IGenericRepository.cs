@@ -9,9 +9,10 @@ namespace NLayer.Core.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {
+        //VERİ TABANINA YAPACAĞIMIZ TEMEL SORGULARI YAZIORUZ VE GNERİC HALE GETRİYORUZ
         Task<T> GetByIdAsync(int id);
         IQueryable<T> GetAll();//IQUERYABLE İLE DİREKT DATABASEYE GİRMEDEN SORGULARI YAPABİLECEĞİMİZ FONKSİYON
-        IQueryable<T> Where(Expression<Func<T,bool>> expression);//DB 
+        IQueryable<T> Where(Expression<Func<T,bool>> expression);//DB DEN DATA ÇEKMEDEN İŞLEMLERİ YAPABİLİRİZ
         Task<bool>AnyAsync(Expression<Func<T,bool>> expression);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);

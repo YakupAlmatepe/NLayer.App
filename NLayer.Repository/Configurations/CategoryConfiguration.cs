@@ -11,13 +11,14 @@ namespace NLayer.Repository.Configurations
 {
     public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
+        // entitylerimizdeki ayarlarımızı yaptığımızyer
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.HasKey(x=> x.Id);
             builder.Property(x=> x.Id).UseIdentityColumn();
             builder.Property(x=>x.Name).IsRequired().HasMaxLength(50);
 
-            builder.ToTable("Categories");
+            builder.ToTable("Categories");//tablo ismini default olarak değil de kendi istediğimizi vermek için kullanılanırız.
         }
     }
 }

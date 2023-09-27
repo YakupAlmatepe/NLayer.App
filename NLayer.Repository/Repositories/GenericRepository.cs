@@ -11,7 +11,7 @@ namespace NLayer.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-
+        //readonly olduğu için ya oluşturulduğunda ya da constraction geçtiğimizde değer atamas yapabiliriz. yanlışlıkla başka birşey set etmmemizi önler
         protected readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
 

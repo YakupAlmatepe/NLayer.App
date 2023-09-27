@@ -21,7 +21,7 @@ namespace NLayer.Core.GenericServices
         Task<T> AddAsync(T entity);
        
         Task <IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
-        
+        //IgENERCİ rEPOSİTORY DEKİ BİLGİLER VAR ANCAK DÖNÜŞ TİPLERİNDE FARKLILIKLAR VAR OZELLİKLE UPDATE DELETE METOTLARINDA
         Task UpdateAsync(T entity);
        
         Task RemoveAsync(T entity);
