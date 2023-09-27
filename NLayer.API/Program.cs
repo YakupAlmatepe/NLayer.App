@@ -8,6 +8,7 @@ using NLayer.API.Middlewares;
 using NLayer.API.Modules;
 using NLayer.Core.GenericServices;
 using NLayer.Core.Repositories;
+using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Repository;
 using NLayer.Repository.Repositories;
@@ -43,6 +44,9 @@ builder.Services.AddScoped(typeof(IService<>),typeof(Service<>));
 //
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {

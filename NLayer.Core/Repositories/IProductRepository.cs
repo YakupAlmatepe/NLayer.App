@@ -9,6 +9,7 @@ namespace NLayer.Core.Repositories
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
+        //generic repositorydeki veriler gelecek (ıgenericrepositoryden miras aldığım için) yrıca ıproduct repositorynin implement işlemlerini yapmış olacağım
         Task<List<Product>> GetProductsWithCategory();
     }
 }
