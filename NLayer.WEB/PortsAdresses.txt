@@ -1,0 +1,5 @@
+﻿ MVC =>  https://localhost:7238
+ MVC =>  http://localhost:5120
+
+ API=> https://localhost:7071
+ API=>http://localhost:5156

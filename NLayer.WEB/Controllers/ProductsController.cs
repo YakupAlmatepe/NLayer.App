@@ -1,22 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
+using NLayer.Core.Services;
+using NLayer.Core.Sevice;
 using NLayer.WEB.Services;
 
 namespace NLayer.WEB.Controllers
 {
     public class ProductsController : Controller
     {
+
         private readonly ProductApiService _productApiService;
         private readonly CategoryApiService _categoryApiService;
 
-        public ProductsController(CategoryApiService categoryApiService, ProductApiService productApiService)
+        public ProductsController(ProductApiService productApiService, CategoryApiService categoryApiService)
         {
-            _categoryApiService = categoryApiService;
             _productApiService = productApiService;
+            _categoryApiService = categoryApiService;
         }
+
 
         public async Task<IActionResult> Index()
         {
